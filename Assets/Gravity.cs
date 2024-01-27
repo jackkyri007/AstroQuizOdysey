@@ -5,6 +5,7 @@ public class Gravity : MonoBehaviour
     Rigidbody2D m_Rigidbody;
     public float m_Thrust = 4;
     public float m_JumpMultiplier = 2;
+    public float maxSpeed = 5f;
 
 
     void Start()
@@ -22,12 +23,21 @@ public class Gravity : MonoBehaviour
 
         if(Input.GetKey("right"))
         {
-            this.m_Rigidbody.AddForce(transform.right * this.m_Thrust);
+            //if max velocity is reached, don't add force
+            if(this.m_Rigidbody.velocity.magnitude < this.maxSpeed)
+            {
+                this.m_Rigidbody.AddForce(transform.right * this.m_Thrust);
+            }
+
         }
 
         if (Input.GetKey("left"))
         {
-            this.m_Rigidbody.AddForce(-transform.right * this.m_Thrust);
+            if(this.m_Rigidbody.velocity.magnitude < this.maxSpeed)
+            {
+                this.m_Rigidbody.AddForce(-transform.right * this.m_Thrust);
+            }
+
         }
     }
 }
