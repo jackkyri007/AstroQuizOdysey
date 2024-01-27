@@ -4,6 +4,7 @@ public class Gravity : MonoBehaviour
 {
     Rigidbody2D m_Rigidbody;
     public float m_Thrust = 4;
+    public float m_JumpMultiplier = 2;
 
 
     void Start()
@@ -15,7 +16,7 @@ public class Gravity : MonoBehaviour
     {
         if (Input.GetKey("space")) {
 
-            this.m_Rigidbody.AddForce(transform.up * this.m_Thrust);
+            this.m_Rigidbody.AddForce(transform.up * this.m_Thrust * this.m_JumpMultiplier);
         
         }
 
